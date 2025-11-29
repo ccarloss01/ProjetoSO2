@@ -1,4 +1,4 @@
-package threads;
+package com.projeto;
 
 public class Liberacao {
 	Integer recurso = 0;
