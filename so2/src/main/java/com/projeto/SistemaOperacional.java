@@ -150,6 +150,10 @@ public class SistemaOperacional extends Thread {
                     graph.getNode("P_" + p.getNomeProc()).setAttribute("ui.style", "fill-color: orange;");
                 }
 
+                System.out.println(">>> Parando todos os processos... <<<");
+                for(Processo p : processos) {
+                    p.parar();
+                }
                 // Para a simulação
                 executando = false;
                 SwingUtilities.invokeLater(() -> {

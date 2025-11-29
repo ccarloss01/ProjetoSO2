@@ -13,6 +13,7 @@ public class Processo extends Thread {
     private Integer tempoUso;    // Tempo de uso (Delta Tu)
     
     public volatile int recursoDesejadoIndex = -1; // -1 = não quer nada agora
+    private volatile boolean ativo = true;
     public ArrayList<Integer> recursosEmUsoIndices = new ArrayList<>();
 
 
@@ -35,9 +36,13 @@ public class Processo extends Thread {
         }
         return id;
     }
+    public void parar() {
+        this.ativo = false;
+        this.interrupt(); // Acorda a thread se estiver dormindo no sleep()
+    }
     
     public void run() {
-        while(true) {
+        while(ativo) {
             try {
                 this.sleep(1000);
                 tempo++;
