@@ -51,7 +51,7 @@ public class Processo extends Thread {
                 try {
                     Geral.mutex.acquire();
                     // Verifica se chegou a hora de liberar algum recurso
-                    while(recursosParaLiberacao.peek() != null && recursosParaLiberacao.peek().tempo <= tempo) {
+                    while(recursosParaLiberacao.peek() != null && recursosParaLiberacao.peek().tempo == tempo) {
                         Liberacao lib = recursosParaLiberacao.poll(); // Tira da fila
                         
                         // Libera o Semáforo
